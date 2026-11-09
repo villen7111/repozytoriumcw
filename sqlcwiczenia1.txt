@@ -1,0 +1,319 @@
+10:24:56	use infio_kapicak	0 row(s) affected	0.000 sec
+
+10:28:11	create table pracownik(id_pracownika int primary key auto_increment,  imie varchar(40) not null,  nazwisko varchar(60) not null,     data_urodzenia DATE not null)	0 row(s) affected	0.578 sec
+
+10:28:26	select * from pracownik LIMIT 0, 1000	0 row(s) returned	0.047 sec / 0.000 sec
+
+10:30:54	insert into pracownik (imie,nazwisko,data_urodzenia) values(("Karol","Kowalski","2000-05-04"),("Patryk","Kwiatkowski","1999-01-12"), ("Dominik","Wiśniewski","2003-08-09")	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3	0.000 sec
+
+10:31:04	insert into pracownik (imie,nazwisko,data_urodzenia) values(("Karol","Kowalski","2000-05-04"),("Patryk","Kwiatkowski","1999-01-12"), ("Dominik","Wiśniewski","2003-08-09"))	Error Code: 1241. Operand should contain 1 column(s)	0.015 sec
+
+10:32:09	insert into pracownik (imie,nazwisko,data_urodzenia) values("Karol","Kowalski","2000-05-04")	1 row(s) affected	0.000 sec
+
+10:32:09	select * from pracownik LIMIT 0, 1000	1 row(s) returned	0.031 sec / 0.000 sec
+
+10:32:24	insert into pracownik (imie,nazwisko,data_urodzenia) values,("Patryk","Kwiatkowski","1999-01-12")	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',("Patryk","Kwiatkowski","1999-01-12")' at line 2	0.000 sec
+
+10:32:29	insert into pracownik (imie,nazwisko,data_urodzenia) values("Patryk","Kwiatkowski","1999-01-12")	1 row(s) affected	0.000 sec
+
+10:32:29	select * from pracownik LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+10:32:41	insert into pracownik (imie,nazwisko,data_urodzenia) values("Dominik","Wiśniewski","2003-08-09")	1 row(s) affected	0.000 sec
+
+10:32:41	select * from pracownik LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+10:33:43	update table pracownik  set data_urodzenia="2020-05-05" where id_pracownik=1	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table pracownik  set data_urodzenia="2020-05-05" where id_pracownik=1' at line 1	0.000 sec
+
+10:33:51	update table pracownik  set data_urodzenia="2020-05-05" where id_pracownika=1	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table pracownik  set data_urodzenia="2020-05-05" where id_pracownika=1' at line 1	0.015 sec
+
+10:34:09	update pracownik  set data_urodzenia="2020-05-05" where id_pracownika=1	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.047 sec
+
+10:34:09	select * from pracownik LIMIT 0, 1000	3 row(s) returned	0.031 sec / 0.000 sec
+
+10:38:20	create table zadanie (id_zadania INT primary key auto_increment,  nazwa_zadania varchar(150) not null,     priorytet enum('normalny','wysoki','niski'),     opis VARCHAR(10000),     pracownik int,     foreign key pracownik     references pracownik(id_pracownika) on delete set null)	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references pracownik(id_pracownika) on delete set null)' at line 7	0.000 sec
+
+10:40:19	create table zadanie (id_zadania INT primary key auto_increment,  nazwa_zadania varchar(150) not null,     priorytet enum('normalny','wysoki','niski'),     opis TEXT,     pracownik int,     foreign key (pracownik)     references pracownik(id_pracownika) on delete set null)	0 row(s) affected	0.984 sec
+
+10:40:20	select * from zadania LIMIT 0, 1000	Error Code: 1146. Table 'infio_kapicak.zadania' doesn't exist	0.047 sec
+
+10:40:29	create table zadanie (id_zadania INT primary key auto_increment,  nazwa_zadania varchar(150) not null,     priorytet enum('normalny','wysoki','niski'),     opis TEXT,     pracownik int,     foreign key (pracownik)     references pracownik(id_pracownika) on delete set null)	Error Code: 1050. Table 'zadanie' already exists	0.032 sec
+
+10:41:02	select * from zadanie LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+10:41:22	drop table zadanie	0 row(s) affected	0.047 sec
+
+10:41:22	select * from zadanie LIMIT 0, 1000	Error Code: 1146. Table 'infio_kapicak.zadanie' doesn't exist	0.015 sec
+
+10:41:37	create table zadanie (id_zadania INT primary key auto_increment,  nazwa_zadania varchar(150) not null,     priorytet enum('normalny','wysoki','niski'),     opis TEXT,     pracownik int,     foreign key (pracownik)     references pracownik(id_pracownika) on delete set null)	0 row(s) affected	0.297 sec
+
+10:41:38	select * from zadanie LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+10:43:33	alter table zadanie modify column priorytet enum('normalny','wysoki','niski') default='normalny'	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='normalny'' at line 2	0.000 sec
+
+10:44:15	alter table zadanie modify column priorytet enum('normalny','wysoki','niski') set default='normalny'	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set default='normalny'' at line 2	0.000 sec
+
+10:44:57	alter table zadanie modify column priorytet enum('normalny','wysoki','niski') set default="normalny"	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set default="normalny"' at line 2	0.000 sec
+
+10:45:18	alter table zadanie alter column priorytet enum('normalny','wysoki','niski') set default="normalny"	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'enum('normalny','wysoki','niski') set default="normalny"' at line 2	0.000 sec
+
+10:45:35	alter table zadanie modify column priorytet enum('normalny','wysoki','niski') set default="normalny"	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set default="normalny"' at line 2	0.000 sec
+
+10:46:28	alter table zadanie modify column priorytet set default="normalny"	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default="normalny"' at line 2	0.000 sec
+
+10:46:39	alter table zadanie modify column priorytet set default "normalny"	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default "normalny"' at line 2	0.000 sec
+
+10:47:05	alter table zadanie modify column priorytet set default 'normalny'	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default 'normalny'' at line 2	0.000 sec
+
+10:47:21	alter table zadanie alter column priorytet set default 'normalny'	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.047 sec
+
+10:47:21	select * from zadanie LIMIT 0, 1000	0 row(s) returned	0.015 sec / 0.000 sec
+
+10:47:59	select * from pracownik LIMIT 0, 1000	3 row(s) returned	0.016 sec / 0.000 sec
+
+10:48:12	select * from zadanie LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+10:49:08	insert into zadanie values (1,"sprzątanie","niski","Uprzątnij korytarz",1) select * from zadanie	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from zadanie' at line 3	0.000 sec
+
+10:49:12	insert into zadanie values (1,"sprzątanie","niski","Uprzątnij korytarz",1)	1 row(s) affected	0.016 sec
+
+10:49:12	select * from zadanie LIMIT 0, 1000	1 row(s) returned	0.015 sec / 0.000 sec
+
+10:49:51	insert into zadanie values (2,"Programowanie","normalny","Zaprogramuj system operacyjny",2)	1 row(s) affected	0.000 sec
+
+10:49:51	select * from zadanie LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+10:50:34	insert into zadanie values (3,"Projektowanie","normalny","Zaprojektuj rakietę na księżyc",3)	1 row(s) affected	0.015 sec
+
+10:50:34	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+10:53:13	create table projekt (id_projektu INT primary key auto_increment,      nazwa_projektu Varchar(150),                     data_rozpoczecia DATE,                     data_zakonczenia DATE)	0 row(s) affected	0.125 sec
+
+10:53:13	select * from projekt LIMIT 0, 1000	0 row(s) returned	0.031 sec / 0.000 sec
+
+10:55:39	alter table projekt add column menadzer_projektu INT, ADD CONSTRAINT klucz_obcy_men foreign key (menadzer_projektu) references pracownik(id_pracownika)	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.515 sec
+
+10:55:40	select * from projekt LIMIT 0, 1000	0 row(s) returned	0.016 sec / 0.000 sec
+
+10:57:44	insert into projekt values (1,"Rozwój Technologii Paliw","2020-05-04","2027-12-11",3) select * from projekt	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from projekt' at line 3	0.000 sec
+
+10:58:11	select * from projekt LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+10:58:34	insert into projekt values (1,"Rozwój Technologii Paliw","2020-05-04","2025-12-11",3) select * from projekt	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from projekt' at line 3	0.000 sec
+
+10:58:39	insert into projekt values (1,"Rozwój Technologii Paliw","2020-05-04","2025-12-11",3)	1 row(s) affected	0.016 sec
+
+10:58:39	select * from projekt LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+
+10:59:20	insert into projekt values (2,"Plany Podboju Księżyca","2024-07-04","2030-12-01",1)	1 row(s) affected	0.000 sec
+
+10:59:20	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:01:54	alter table zadanie add column projekt INT, ADD constraint zadanie_fk_p foreign key projekt references projekt(id_projektu) on delete cascade	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references projekt(id_projektu) on delete cascade' at line 4	0.015 sec
+
+11:02:46	alter table zadanie add column projekt INT, ADD constraint zadanie_fk_p foreign key (projekt) references projekt(id_projektu) on delete cascade	3 row(s) affected Records: 3  Duplicates: 0  Warnings: 0	0.234 sec
+
+11:02:47	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:04:14	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:05:35	update table projekt set nazwa_projektu="Rozwój systemu operacyjnego" where id_projektu=1	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table projekt set nazwa_projektu="Rozwój systemu operacyjnego" where id_projekt' at line 1	0.000 sec
+
+11:05:47	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:06:28	update projekt set nazwa_projektu="Rozwój systemu operacyjnego" where id_projektu=1	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.015 sec
+
+11:06:28	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:07:03	update projekt set menadzer_projektu=2 where id_projektu=1	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:07:03	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:07:12	update projekt set menadzer_projektu=3 where id_projektu=2	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:07:12	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:07:27	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:08:29	update zadanie  set projekt=1 where id_zadania=2	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:08:39	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:08:56	update zadanie  set projekt=2 where id_zadania=3	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:08:56	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:10:57	create table sprint (id_sprintu INT primary key auto_increment,      numer_sprintu INT unsinged,                     data_rozpoczecia DATE,                     data_zakonczenia DATE)	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unsinged,                     data_rozpoczecia DATE,                     data_za' at line 2	0.000 sec
+
+11:11:14	create table sprint (id_sprintu INT primary key auto_increment,      numer_sprintu INT UNSINGED,                     data_rozpoczecia DATE,                     data_zakonczenia DATE)	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSINGED,                     data_rozpoczecia DATE,                     data_za' at line 2	0.000 sec
+
+11:11:48	create table sprint(id_sprintu INT primary key auto_increment,      numer_sprintu INT UNSINGED,                     data_rozpoczecia DATE,                     data_zakonczenia DATE)	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSINGED,                     data_rozpoczecia DATE,                     data_za' at line 2	0.015 sec
+
+11:13:05	create table sprint(id_sprintu INT primary key auto_increment,      numer_sprintu INT UNSIgnED,                     data_rozpoczecia DATE,                     data_zakonczenia DATE)	0 row(s) affected	0.157 sec
+
+11:13:05	select * from sprint LIMIT 0, 1000	0 row(s) returned	0.171 sec / 0.000 sec
+
+11:13:21	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:15:23	select * from zadanie  alter zadanie add column sprint int, add constraint sprint_fk foreign key sprint references sprint(id_sprintu) oN delete set null	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter zadanie add column sprint int, add constraint sprint_fk foreign key sprint' at line 3	0.000 sec
+
+11:16:24	select * from zadanie  alter zadanie add column sprint int, add constraint sprint_fk foreign key (sprint) references sprint(id_sprintu) oN delete set null	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter zadanie add column sprint int, add constraint sprint_fk foreign key (sprin' at line 3	0.000 sec
+
+11:16:43	select * from zadanie  alter zadanie add column sprint int UNSIGNED, add constraint sprint_fk foreign key (sprint) references sprint(id_sprintu) oN delete set null	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter zadanie add column sprint int UNSIGNED, add constraint sprint_fk foreign k' at line 3	0.000 sec
+
+11:17:45	select * from zadanie  alter zadanie add column sprint int, add constraint sprint_fk foreign key (sprint) references sprint(id_sprintu) oN delete set null	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter zadanie add column sprint int, add constraint sprint_fk foreign key (sprin' at line 3	0.000 sec
+
+11:18:01	select * from zadanie  alter zadanie add column sprint int	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter zadanie add column sprint int' at line 3	0.015 sec
+
+11:18:13	select * from zadanie  alter table zadanie add column sprint int	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter table zadanie add column sprint int' at line 3	0.000 sec
+
+11:18:23	alter table zadanie add column sprint int	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.015 sec
+
+11:19:13	alter table zadanie add constraint sprint_fk foreign key (sprint) references sprint(id_sprintu)	3 row(s) affected Records: 3  Duplicates: 0  Warnings: 0	0.609 sec
+
+11:19:22	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:19:50	select * from sprint LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+11:20:33	insert into sprint values (1,1,"2024-05-05","2025-04-07")	1 row(s) affected	0.000 sec
+
+11:20:41	select * from sprint LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+
+11:20:47	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:21:30	update zadanie  set sprint=1 where id_zadania=2	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:21:30	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.031 sec / 0.000 sec
+
+11:21:34	update zadanie  set sprint=1 where id_zadania=3	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:21:34	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:22:32	create table status(id_statusu int primary key auto_increment,      nazwa_statusu VARCHAR(20))	0 row(s) affected	0.109 sec
+
+11:22:38	select * from status LIMIT 0, 1000	0 row(s) returned	0.016 sec / 0.000 sec
+
+11:23:16	insert into status values (1,"aktywny") select * from status	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from status' at line 3	0.000 sec
+
+11:23:19	insert into status values (1,"aktywny")	1 row(s) affected	0.000 sec
+
+11:23:19	select * from status LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+
+11:23:24	insert into status values (2,"nieaktywny")	1 row(s) affected	0.000 sec
+
+11:23:24	select * from status LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:23:32	insert into status values (3,"wstrzymany")	1 row(s) affected	0.000 sec
+
+11:23:32	select * from status LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:29:10	create table zadanie_has_status(id_zdarzenia int PRimary key auto_increment,         id_zadania int,                                 id_statusu int,                                 data_zdarzenia  TIMESTAMP default CURRENT_TIMESTAMP,      constraint id_zadania_fk foreign key (id_zadania) references zadanie(id_zadania),                     constraint id_statusu_fk foreign key (id_statusu) references status(id_statusu))	0 row(s) affected	0.172 sec
+
+11:29:31	select * from zadanie_has_status LIMIT 0, 1000	0 row(s) returned	0.000 sec / 0.000 sec
+
+11:30:31	insert into zdanie_has_status values (1,1,1,"2025-05-04") select * from zadanie_has_status	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from zadanie_has_status' at line 3	0.000 sec
+
+11:30:35	insert into zdanie_has_status values (1,1,1,"2025-05-04")	Error Code: 1146. Table 'infio_kapicak.zdanie_has_status' doesn't exist	0.000 sec
+
+11:30:51	insert into zadanie_has_status values (1,1,1,"2025-05-04")	1 row(s) affected	0.016 sec
+
+11:30:51	select * from zadanie_has_status LIMIT 0, 1000	1 row(s) returned	0.016 sec / 0.000 sec
+
+11:31:08	select * from status LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:31:18	select * from zadanie_has_status LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+
+11:31:25	select * from zadania LIMIT 0, 1000	Error Code: 1146. Table 'infio_kapicak.zadania' doesn't exist	0.000 sec
+
+11:31:29	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.046 sec / 0.000 sec
+
+11:31:55	insert into zadanie_has_status values (2,2,2,"2023-12-12")	1 row(s) affected	0.000 sec
+
+11:31:55	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:32:05	insert into zadanie_has_status values (2,2,2,"2023-12-12")	Error Code: 1062. Duplicate entry '2' for key 'zadanie_has_status.PRIMARY'	0.000 sec
+
+11:32:22	select * from zadanie_has_status LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:32:47	insert into zadanie_has_status values (3,3,1,"2021-02-27")	1 row(s) affected	0.016 sec
+
+11:32:47	select * from zadanie_has_status LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:33:06	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:33:48	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'sprint_fk' on table 'zadanie'.	0.016 sec
+
+11:34:14	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:35:41	DELETE FROM projekt WHERE id_zadania = 2	Error Code: 1054. Unknown column 'id_zadania' in 'where clause'	0.000 sec
+
+11:35:46	DELETE FROM projekt WHERE id_zadania = 2	Error Code: 1054. Unknown column 'id_zadania' in 'where clause'	0.000 sec
+
+11:35:55	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:36:03	DELETE FROM projekt WHERE id_projektu = 2	Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`infio_kapicak`.`zadanie_has_status`, CONSTRAINT `id_zadania_fk` FOREIGN KEY (`id_zadania`) REFERENCES `zadanie` (`id_zadania`))	0.015 sec
+
+11:37:02	select * from zadania LIMIT 0, 1000	Error Code: 1146. Table 'infio_kapicak.zadania' doesn't exist	0.016 sec
+
+11:37:06	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:39:27	DELETE FROM projekt WHERE id_projektu = 2	Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`infio_kapicak`.`zadanie_has_status`, CONSTRAINT `id_zadania_fk` FOREIGN KEY (`id_zadania`) REFERENCES `zadanie` (`id_zadania`))	0.000 sec
+
+11:40:31	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'sprint_fk' on table 'zadanie'.	0.000 sec
+
+11:40:47	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:41:35	DELETE FROM projekt WHERE id_projektu = 2	Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`infio_kapicak`.`zadanie_has_status`, CONSTRAINT `id_zadania_fk` FOREIGN KEY (`id_zadania`) REFERENCES `zadanie` (`id_zadania`))	0.000 sec
+
+11:42:06	DELETE FROM projekt WHERE id_projektu = 2	Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`infio_kapicak`.`zadanie_has_status`, CONSTRAINT `id_zadania_fk` FOREIGN KEY (`id_zadania`) REFERENCES `zadanie` (`id_zadania`))	0.000 sec
+
+11:42:11	select * from projekt LIMIT 0, 1000	2 row(s) returned	0.000 sec / 0.000 sec
+
+11:42:34	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:43:39	update zadanie set projekt=1 where id_zadania=3	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:43:51	DELETE FROM projekt WHERE id_projektu = 2	1 row(s) affected	0.000 sec
+
+11:43:51	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.016 sec / 0.000 sec
+
+11:44:10	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'sprint_fk' on table 'zadanie'.	0.000 sec
+
+11:44:21	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:45:09	alter table zadanie drop column sprint	Error Code: 1828. Cannot drop column 'sprint': needed in a foreign key constraint 'sprint_fk'	0.000 sec
+
+11:45:12	alter table zadanie drop column sprint	Error Code: 1828. Cannot drop column 'sprint': needed in a foreign key constraint 'sprint_fk'	0.000 sec
+
+11:46:18	ALTER TABLE zadanie DROP CONSTRAINT sprint_fk	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.172 sec
+
+11:47:19	ALTER TABLE zadanie ADD CONSTRAINT fk_nazwa_klucza_obcego FOREIGN KEY (sprint)  REFERENCES sprint(id_sprintu) on delete Cascade	3 row(s) affected Records: 3  Duplicates: 0  Warnings: 0	0.218 sec
+
+11:47:26	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:48:21	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:48:25	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:49:13	ALTER TABLE zadanie DROP CONSTRAINT fk_nazwa_klucza_obcego	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.047 sec
+
+11:50:16	ALTER TABLE zadanie ADD CONSTRAINT fk_nazwa_klucza_obcego FOREIGN KEY (sprint)  REFERENCES sprint(id_sprintu) ON DELETE CASCADE on update cascade	3 row(s) affected Records: 3  Duplicates: 0  Warnings: 0	0.156 sec
+
+11:50:25	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:50:47	select * from sprint LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+
+11:51:15	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:52:05	update zadanie set sprint=null where id_zadania=2	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:52:05	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:52:09	update zadanie set sprint=null where id_zadania=3	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.000 sec
+
+11:52:09	select * from zadanie LIMIT 0, 1000	3 row(s) returned	0.000 sec / 0.000 sec
+
+11:52:15	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:52:18	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
+
+11:53:29	drop table sprint	Error Code: 3730. Cannot drop table 'sprint' referenced by a foreign key constraint 'fk_nazwa_klucza_obcego' on table 'zadanie'.	0.000 sec
