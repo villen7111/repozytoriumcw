@@ -1,0 +1,151 @@
+drop table sprint
+
+use infio_kapicak
+
+drop table sprint
+
+select * from zadanie LIMIT 0, 1000
+
+alter table zadanie drop foreign key fk_nazwa_klucza_obcego
+
+drop table sprint
+
+alter table zadanie drop foreign key zadanie_ibfk_1
+
+alter table projekt drop foreign key klucz_obcy_men
+
+select * from pracownik LIMIT 0, 1000
+
+alter table pracownik drop primary key
+
+desc pracownik
+
+alter table pracownik modify id_pracownika INT
+
+alter table pracownik drop primary key
+
+alter table pracownik add primary key(id_pracownika)
+
+desc pracownik
+
+select * from projekt LIMIT 0, 1000
+
+alter table projekt add constraint klucz_pracownikprojekt foreign key (menadzer_projektu) references pracownik(id_pracownika) on delete set null
+
+select * from zadanie LIMIT 0, 1000
+
+alter table zadanie add constraint klucz_pracownikzadanie foreign key (pracownik) references pracownik(id_pracownika) on delete set null
+
+select * from zadanie LIMIT 0, 1000
+
+select * from zadanie alter table zadanie  add column godziny_szacowane INT default=8
+
+alter table zadanie  add godziny_szacowane INT default=8
+
+alter table zadanie  add godziny_szacowane INT default 8
+
+select * from zadanie LIMIT 0, 1000
+
+update table zadanie set godziny_szacowane=4 where id_zadania=1
+
+select * from zadanie LIMIT 0, 1000
+
+update zadanie set godziny_szacowane=4 where id_zadania=1
+
+select * from zadanie LIMIT 0, 1000
+
+update zadanie set godziny_szacowane=10 where id_zadania=2
+
+select * from zadanie LIMIT 0, 1000
+
+update zadanie set godziny_szacowane=12 where id_zadania=3
+
+select * from zadanie LIMIT 0, 1000
+
+alter table zadanie modify godziny_szacowane INT default 6
+
+select * from zadanie LIMIT 0, 1000
+
+insert into zadanie (id_zadania,nazwa_zadania,priorytet,opis,pracownik,projekt,sprint) values (4,"gotowanie",'niski',"Ugotuj obiad",2,2,null)
+
+select * from zadanie LIMIT 0, 1000
+
+insert into zadanie (id_zadania,nazwa_zadania,priorytet,opis,pracownik,projekt,sprint) values (4,"gotowanie",'niski',"Ugotuj obiad",2,1,null)
+
+select * from zadanie LIMIT 0, 1000
+
+delete from zadaniewhere id_zadania=4
+
+delete from zadanie where id_zadania=4
+
+select * from zadanie LIMIT 0, 1000
+
+select * from projekt LIMIT 0, 1000
+
+select * from projekt LIMIT 0, 1000
+
+alter table projekt add opis_kratki VARCHAR(50)
+
+select * from projekt LIMIT 0, 1000
+
+alter table projekt modify opis_kratki VARCHAR(200)
+
+select * from projekt LIMIT 0, 1000
+
+desc projekt
+
+select * from projekt LIMIT 0, 1000
+
+insert into projekt values (2,"Gotowanie rosołu",'2022-05-04','2024-05-01',1,null)
+
+select * from projekt LIMIT 0, 1000
+
+insert into projekt values (3,"Sprzedaż samochodu",'2012-05-04','2014-05-09',2,null)
+
+select * from projekt LIMIT 0, 1000
+
+update projekt set opis_kratki="MVP" where id_projektu=1
+
+select * from projekt LIMIT 0, 1000
+
+update projekt set opis_kratki="Pilne wdrożenie" where id_projektu=2
+
+select * from projekt LIMIT 0, 1000
+
+update projekt set opis_kratki="wolne wdrożenie" where id_projektu=3
+
+select * from projekt LIMIT 0, 1000
+
+alter table projekt drop column opis_kratki
+
+select * from projekt LIMIT 0, 1000
+
+select * from zadanie LIMIT 0, 1000
+
+select * from projekt LIMIT 0, 1000
+
+select * from zadanie LIMIT 0, 1000
+
+alter table zadanie drop foreign key zadanie_fk_p
+
+select * from zadanie LIMIT 0, 1000
+
+alter table zadanie add constraint zmieniony_zadaniefkp foreign key (projekt) references projekt(id_projektu) on delete set null
+
+select * from zadanie LIMIT 0, 1000
+
+select * from projekt LIMIT 0, 1000
+
+select * from zadanie LIMIT 0, 1000
+
+update zadanie set projekt=2 where id_zadania=2
+
+select * from zadanie LIMIT 0, 1000
+
+select * from projekt LIMIT 0, 1000
+
+delete from projekt where id_projektu=2
+
+select * from projekt LIMIT 0, 1000
+
+select * from zadanie LIMIT 0, 1000
